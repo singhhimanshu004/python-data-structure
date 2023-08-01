@@ -140,6 +140,8 @@ class BST:
 
             # Removing a node with both left child and right child
             elif node.left_node is not None and node.right_node is not None:
+                # Note: 1. the smallest item in the right subtree is called the SUCCESSOR
+                # Note: 2. the largest item in the left subtree is called the PREDECESSOR
                 print(f'Removing a node with two children: {node.data}')
                 # get the largest node in the left subtree
                 predecessor = self.get_predecessor(node.left_node)

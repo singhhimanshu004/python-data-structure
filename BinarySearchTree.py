@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data, parent = None):
+    def __init__(self, data, parent=None):
         self.data = data
         self.left_node = None
         self.right_node = None
@@ -13,7 +13,6 @@ class BST:
     def insert(self, data):
         if not self.root:
             self.root = Node(data)
-
         else:
             self.insert_node(data, self.root)
 
@@ -71,7 +70,7 @@ class BST:
         if node.left_node:
             self.traverse_in_order(node.left_node)
 
-        print(node.data, end=' ')
+        print(node.data, end=" ")
 
         if node.right_node:
             self.traverse_in_order(node.right_node)
@@ -92,7 +91,7 @@ class BST:
             # There are 3 Options
             # LEAF NODE CASE
             if node.left_node is None and node.right_node is None:
-                print(f'Removing a leaf Node: {node.data}')
+                print(f"Removing a leaf Node: {node.data}")
                 parent = node.parent
 
                 if parent is not None and parent.left_node == node:
@@ -107,7 +106,7 @@ class BST:
                 del node
             # Node has One child
             elif node.left_node is None and node.right_node is not None:
-                print(f'Removing a node with single right child: {node.data}')
+                print(f"Removing a node with single right child: {node.data}")
                 parent = node.parent
 
                 if parent is not None and parent.left_node == node:
@@ -123,7 +122,7 @@ class BST:
                 del node
 
             elif node.right_node is None and node.left_node is not None:
-                print(f'Removing a node with single left child: {node.data}')
+                print(f"Removing a node with single left child: {node.data}")
                 parent = node.parent
 
                 if parent is not None and parent.left_node == node:
@@ -142,7 +141,7 @@ class BST:
             elif node.left_node is not None and node.right_node is not None:
                 # Note: 1. the smallest item in the right subtree is called the SUCCESSOR
                 # Note: 2. the largest item in the left subtree is called the PREDECESSOR
-                print(f'Removing a node with two children: {node.data}')
+                print(f"Removing a node with two children: {node.data}")
                 # get the largest node in the left subtree
                 predecessor = self.get_predecessor(node.left_node)
                 # swap the node data with predecessor node data
@@ -158,7 +157,7 @@ class BST:
         return node
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     bst = BST()
     bst.insert(35)
     bst.insert(27)
@@ -170,22 +169,21 @@ if __name__ == '__main__':
 
     print("Inorder traversal: (sorted order)")
     bst.traverse()
-    print('\n')
-    print(f'Min value in BST: {bst.get_min()}')
+    print("\n")
+    print(f"Min value in BST: {bst.get_min()}")
 
-    print(f'Maxvalue in BST: {bst.get_max()}')
+    print(f"Maxvalue in BST: {bst.get_max()}")
 
     bst.remove(56)
     bst.remove(97)
     bst.remove(76)
     print("Inorder traversal: (sorted order)")
     bst.traverse()
-    print('\n')
+    print("\n")
     bst.remove(35)
     bst.remove(27)
     bst.remove(32)
     print("Inorder traversal: (sorted order)")
     bst.traverse()
-    print('\n')
+    print("\n")
     bst.remove(12)
-

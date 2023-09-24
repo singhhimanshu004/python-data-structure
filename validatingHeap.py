@@ -7,7 +7,7 @@ def is_min_heap(heap):
         return heap[0] < heap[1]
 
     # Total num of items that we need to consider in the array
-    # for validating if its a min heap: r = 2*i +2 => i =
+    # for validating if it's a min heap: r = 2*i +2 => i =
     num_items = (len(heap) - 2) // 2 + 1
 
     for i in range(num_items):
@@ -28,7 +28,7 @@ def is_max_heap(heap):
         return heap[0] > heap[1]
 
     # Total num of items that we need to consider in the array
-    # for validating if its a min heap: r = 2*i +2 => i =
+    # for validating if it's a min heap: r = 2*i +2 => i =
     num_items = (len(heap) - 2) // 2 + 1
 
     for i in range(num_items):

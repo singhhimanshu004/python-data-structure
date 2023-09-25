@@ -13,13 +13,13 @@ class LFUCache(object):
         :type key: int
         :rtype: int
         """
-        if self.cache_dict.get(key):
-            self.cache.remove(key)
-            self.cache.append(key)
-            self.count[key] = self.count[key] + 1
-            return self.cache_dict.get(key)
-        else:
+        if key not in self.cache_dict.keys():
             return -1
+
+        self.cache.remove(key)
+        self.cache.append(key)
+        self.count[key] = self.count[key] + 1
+        return self.cache_dict[key]
 
     def put(self, key, value):
         """
@@ -27,13 +27,14 @@ class LFUCache(object):
         :type value: int
         :rtype: None
         """
-        if self.cache_dict.get(key):
+        if key in self.cache_dict.keys():
             # re-order
             self.cache.remove(key)
             self.cache.append(key)
 
             self.cache_dict[key] = value
             self.count[key] = self.count[key] + 1
+            return
         if len(self.cache) < self.capacity:
             self.cache.append(key)
             self.cache_dict[key] = value
@@ -43,8 +44,9 @@ class LFUCache(object):
                 sorted(self.count.items(), key=lambda item: item[1])
             )
             if (
-                not list(sorted_count_dict.values())[0]
-                == list(sorted_count_dict.values())[1]
+                self.capacity > 1
+                and not list(sorted_count_dict.values())[1]
+                == list(sorted_count_dict.values())[0]
             ):
                 self.cache.remove(list(sorted_count_dict.keys())[0])
                 del self.count[list(sorted_count_dict.keys())[0]]
